@@ -18,7 +18,7 @@ abstract class Employee : IBillable
 }
 class FullTimeEmployee : Employee
 {
-    private const int HourlyRate = 1250;
+    protected const int HourlyRate = 1250;
 
     public FullTimeEmployee(int id, string name)
         : base(id, name)
@@ -40,7 +40,7 @@ class FullTimeEmployee : Employee
 }
 class ContractEmployee : Employee
 {
-    private const int HourlyRate = 1000;
+    protected const int HourlyRate = 1000;
 
     public ContractEmployee(int id, string name)
         : base(id, name)
