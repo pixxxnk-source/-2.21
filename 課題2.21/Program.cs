@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 interface IBillable
 {
     int CostForDay(int hoursWorked);
@@ -19,11 +18,9 @@ abstract class Employee : IBillable
 class FullTimeEmployee : Employee
 {
     protected const int HourlyRate = 1250;
-
     public FullTimeEmployee(int id, string name)
         : base(id, name)
     {
-
     }
     public override int CostForDay(int hoursWorked)
     {
@@ -41,21 +38,18 @@ class FullTimeEmployee : Employee
 class ContractEmployee : Employee
 {
     protected const int HourlyRate = 1000;
-
     public ContractEmployee(int id, string name)
         : base(id, name)
     {
     }
-
     public override int CostForDay(int hoursWorked)
     {
         return hoursWorked * HourlyRate;
     }
 }
-
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         List<IBillable> employees = new List<IBillable>
         {
@@ -63,12 +57,17 @@ class Program
             new ContractEmployee(2, "佐藤")
         };
 
-        int[] hours = { 9, 9 };
+        int[] hoursWorked = { 9, 9 };
 
-        for (int i = 0; i < employees.Count; i++)
+        int index = 0;
+
+        //修正箇所：for→foreach
+        foreach (IBillable employee in employees)
         {
-            int cost = employees[i].CostForDay(hours[i]);
+            int cost = employee.CostForDay(hoursWorked[index]);
             Console.WriteLine($"日給: {cost}円");
+            index++;
         }
     }
 }
+
